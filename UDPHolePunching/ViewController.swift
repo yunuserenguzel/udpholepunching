@@ -40,8 +40,8 @@ enum ConnectionCodes {
 }
 
 class ViewController: UIViewController, GCDAsyncUdpSocketDelegate {
-//    let host:String = "54.69.234.65" 
-    let host:String = "192.168.1.106"
+    let host:String = "54.69.234.65" 
+//    let host:String = "192.168.1.106"
     let port:UInt16 = 3366
     var socket:GCDAsyncUdpSocket!
     var button:UIButton!
