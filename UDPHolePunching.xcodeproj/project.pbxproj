@@ -13,6 +13,7 @@
 		AE5F1E7419E54F0400E30112 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5F1E7319E54F0400E30112 /* Images.xcassets */; };
 		AE5F1E7719E54F0400E30112 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE5F1E7519E54F0400E30112 /* LaunchScreen.xib */; };
 		AE5F1E8319E54F0400E30112 /* UDPHolePunchingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5F1E8219E54F0400E30112 /* UDPHolePunchingTests.swift */; };
+		AE5F1E8F19E54F3200E30112 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5F1E8E19E54F3200E30112 /* GCDAsyncUdpSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,9 @@
 		AE5F1E7C19E54F0400E30112 /* UDPHolePunchingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UDPHolePunchingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5F1E8119E54F0400E30112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE5F1E8219E54F0400E30112 /* UDPHolePunchingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPHolePunchingTests.swift; sourceTree = "<group>"; };
+		AE5F1E8C19E54F3200E30112 /* UDPHolePunching-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UDPHolePunching-Bridging-Header.h"; sourceTree = "<group>"; };
+		AE5F1E8D19E54F3200E30112 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		AE5F1E8E19E54F3200E30112 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +86,10 @@
 				AE5F1E7019E54F0400E30112 /* Main.storyboard */,
 				AE5F1E7319E54F0400E30112 /* Images.xcassets */,
 				AE5F1E7519E54F0400E30112 /* LaunchScreen.xib */,
+				AE5F1E8D19E54F3200E30112 /* GCDAsyncUdpSocket.h */,
+				AE5F1E8E19E54F3200E30112 /* GCDAsyncUdpSocket.m */,
 				AE5F1E6A19E54F0300E30112 /* Supporting Files */,
+				AE5F1E8C19E54F3200E30112 /* UDPHolePunching-Bridging-Header.h */,
 			);
 			path = UDPHolePunching;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE5F1E6F19E54F0400E30112 /* ViewController.swift in Sources */,
+				AE5F1E8F19E54F3200E30112 /* GCDAsyncUdpSocket.m in Sources */,
 				AE5F1E6D19E54F0400E30112 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,9 +344,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UDPHolePunching/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UDPHolePunching/UDPHolePunching-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -346,9 +357,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = UDPHolePunching/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "UDPHolePunching/UDPHolePunching-Bridging-Header.h";
 			};
 			name = Release;
 		};
