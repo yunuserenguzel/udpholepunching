@@ -40,8 +40,8 @@ enum ConnectionCodes {
 }
 
 class ViewController: UIViewController, GCDAsyncUdpSocketDelegate {
-    let host:String = "54.69.234.65" 
-//    let host:String = "192.168.1.106"
+//    let host:String = "54.69.234.65" 
+    let host:String = "192.168.1.106"
     let port:UInt16 = 3366
     var socket:GCDAsyncUdpSocket!
     var button:UIButton!
@@ -220,28 +220,28 @@ class ViewController: UIViewController, GCDAsyncUdpSocketDelegate {
     }
     
     func getOthers() {
-//        var timeout:NSTimeInterval = 3
-//        var queue : dispatch_queue_t = dispatch_queue_create("com.UDPHolePunching",nil)
-//        dispatch_async(queue, { () -> Void in
-//            var startTime:NSDate!
-//            while true {
-//                if self.status == AppStatus.Registered {
-//                    startTime = NSDate();
+        var timeout:NSTimeInterval = 3
+        var queue : dispatch_queue_t = dispatch_queue_create("com.UDPHolePunching",nil)
+        dispatch_async(queue, { () -> Void in
+            var startTime:NSDate!
+            while true {
+                if self.status == AppStatus.Registered {
+                    startTime = NSDate();
                     self.sendText(ConnectionCodes.GetOthers.string(), message: nil)
                     self.status = AppStatus.RetrievingOthers
-//                    NSLog("Retrieving others")
-//                }
-//                else if self.status == AppStatus.RetrievingOthers {
-//                    if NSDate().timeIntervalSinceDate(startTime) > timeout {
-//                        self.status = AppStatus.Registered
-//                        NSLog("retrieving others timoeut")
-//                    }
-//                }
-//                else {
-//                    break;
-//                }
-//            }
-//        });
+                    NSLog("Retrieving others")
+                }
+                else if self.status == AppStatus.RetrievingOthers {
+                    if NSDate().timeIntervalSinceDate(startTime) > timeout {
+                        self.status = AppStatus.Registered
+                        NSLog("retrieving others timoeut")
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+        });
     }
     
     func punch(){
