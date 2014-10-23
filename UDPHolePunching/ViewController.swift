@@ -40,8 +40,8 @@ enum ConnectionCodes {
 }
 
 class ViewController: UIViewController, GCDAsyncUdpSocketDelegate {
-//    let host:String = "54.69.234.65" 
-    let host:String = "192.168.1.106"
+    let host:String = "54.69.234.65" 
+//    let host:String = "192.168.1.106"
     let port:UInt16 = 3366
     var socket:GCDAsyncUdpSocket!
     var button:UIButton!
@@ -132,16 +132,18 @@ class ViewController: UIViewController, GCDAsyncUdpSocketDelegate {
     
     func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
         var string = NSString(data: data, encoding: NSUTF8StringEncoding)
-        var code = string.substringToIndex(1)
-        var message = string.substringFromIndex(1)
-        NSLog("\ncode: %@ \nmessage: %@", code,message);
+        var code = string?.substringToIndex(1)
+
+        var message = string?.substringFromIndex(1)
+//        NSLog("\ncode: %@ \nmessage: %@", code?,message?);
         if code == ConnectionCodes.Register.string() {
             self.status = AppStatus.Registered;
             NSLog("registered!")
         }
         else if code == ConnectionCodes.GetOthers.string() {
             var error:NSError?
-            var json:AnyObject! = NSJSONSerialization.JSONObjectWithData(message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: &error)
+            var data:NSData = message?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
+            var json:AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &error)
             NSLog("ready and will call");
             var array:NSArray = json as NSArray
             if(array.count > 0) {
@@ -162,7 +164,8 @@ class ViewController: UIViewController, GCDAsyncUdpSocketDelegate {
         else if code == ConnectionCodes.Call.string() {
             self.status = AppStatus.WillCall
             var error:NSError?
-            var json:AnyObject! = NSJSONSerialization.JSONObjectWithData(message.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: NSJSONReadingOptions.AllowFragments, error: &error)
+            var data:NSData = message?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
+            var json:AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &error)
             NSLog("ready and will call");
             if(json != nil) {
                 var array:NSArray = json as NSArray
@@ -188,7 +191,7 @@ class ViewController: UIViewController, GCDAsyncUdpSocketDelegate {
         var code = ConnectionCodes.Alert.string()
         var responseText = code + message;
         var data:NSData! = responseText.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false);
-        self.socket.sendData(data, toHost: self.peerIp, port: self.peerPort, withTimeout: -1, tag: 1);
+        self.socket.sendData(data, toHost: self.host, port: self.port, withTimeout: -1, tag: 1);
     }
     func register(){
 //        if self.textField.text.utf16Count > 0 {
